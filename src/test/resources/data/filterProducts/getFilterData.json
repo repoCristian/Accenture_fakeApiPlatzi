@@ -1,0 +1,8 @@
+{
+  "title": "new Product",
+  "price": 100,
+  "priceMin": 900,
+  "priceMax": 1000,
+  "categoryId": 2
+
+}

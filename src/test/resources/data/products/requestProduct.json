@@ -1,0 +1,9 @@
+{
+  "title": "NEW PRODUCT UPDATE",
+  "price": 100,
+  "description": "dsadsa",
+  "categoryId": 3,
+  "images": [
+    "https://placehold.co/600x400"
+  ]
+}
