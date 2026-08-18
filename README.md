@@ -155,16 +155,6 @@ bash
 
 file:/build/cucumber-html-reports/cucumber-html-reports/overview-features.html
 
-##  Buenas prácticas aplicadas
-
-
-- **Modularización por dominio**: los `.feature`, `data` y `schema` están organizados por funcionalidad (productos, categorías, usuarios, filtros), con un runner dedicado por dominio.
-- **Reutilización de datos**: los payloads de prueba están centralizados en la carpeta `data`, evitando duplicación de JSON dentro de los escenarios.
-- **Validación de esquemas**: se usan schemas JSON (carpeta `schema`) para validar tipos y estructura de las respuestas, en vez de comparar valores exactos que cambian entre ejecuciones.
-- **Datos dinámicos**: funciones JavaScript reutilizables en `utils` (uso de `karate.uuid()`) para generar valores únicos (títulos, slugs) y evitar colisiones de datos entre corridas.
-- **Escenarios independientes**: los flujos de creación, actualización y eliminación de un mismo recurso están encadenados dentro de un mismo `Scenario`, evitando dependencias de orden de ejecución entre pruebas — clave para la ejecución en paralelo.
-- **Casos negativos**: se incluyen validaciones de comportamiento ante datos inválidos (IDs inexistentes, precios negativos, filtros sin resultados), no solo flujos exitosos.
-
 
 ## Preguntas técnicas del proyecto
 
@@ -187,10 +177,7 @@ Para los datos de entrada, centralice estos en archivos JSON reutilizables dentr
 
 
 ### d. ¿Qué aprendizajes obtuviste al desarrollar esta prueba técnica y cómo consideras que aportan a tu crecimiento profesional?
-d. ¿Qué aprendizajes obtuviste al desarrollar esta prueba técnica y cómo consideras que aportan a tu crecimiento profesional?
 
-Un aprendizaje fue entender cómo Gradle organiza y encuentra los archivos de test en comparación con Maven. No es algo que se note hasta que te enfrentas al problema: tenía todo bien escrito, pero el proyecto simplemente no ejecutaba nada por lo que tuve que investigar cómo Gradle maneja el classpath para poder resolverlo.
+Aprendí lo importante que es que cada prueba pueda correr por su cuenta, sin depender de qué otra prueba haya corrido antes. Al usar ejecución en paralelo, el orden no está garantizado y las pruebas pueden fallar sin que exista un error en la API. Aprendí a resolverlo haciendo que cada prueba genere sus propios datos, para que no le importe el orden.
 
-También aprendí lo importante que es que cada prueba pueda correr por su cuenta, sin depender de qué otra prueba haya corrido antes. Al usar ejecución en paralelo, el orden no esta garantizado y las pruebas pueden fallar sin que exista un error en la API. Aprendí a resolverlo haciendo que cada prueba genere sus propios datos, para que no le importe el orden.
-
-Por último, considero que la prueba aporta a mi crecimiento profesional ya que me ayudo a darme cuenta de que muchas veces la API no se comporta exactamente como uno espera, y no sirve de nada asumir o adivinar. Tuve que aprender a leer con calma la respuesta real del servidor (el status), el mensaje de error, el tipo de dato que devolvía para entender qué estaba pasando de verdad antes de corregir algo. La costumbre de investigar antes de asumir es algo que considero fundamental para cualquier QA automation, debido a que en un proyecto real las cosas casi nunca salen como dice la documentación.
+Considero que la prueba aporta a mi crecimiento profesional ya que me ayudó a darme cuenta de que muchas veces la API no se comporta exactamente como uno espera, y no sirve de nada asumir o adivinar. Tuve que aprender a leer con calma la respuesta real del servidor (el status), el mensaje de error, el tipo de dato que devolvía para entender qué estaba pasando de verdad antes de corregir algo. La costumbre de investigar antes de asumir es algo que considero fundamental para cualquier QA automation, debido a que en un proyecto real las cosas casi nunca salen como dice la documentación.
